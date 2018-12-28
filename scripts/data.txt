@@ -1,2 +1,0 @@
-NAME OF SAMPLE		RESOLUTION LIMIT			R VALUE						COMPLETENESS				I/SIGI						Multiplicity				CC 1/2						SPACE			UNIT CELL
-(fastDP worked)		All		Low		High		All		Low		High		All		Low		High		All		Low		High		All		Low		High		All		Low		High		GROUP
