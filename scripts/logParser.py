@@ -8,7 +8,6 @@
 #
 
 import os
-import shutil
 import argparse
 
 
@@ -136,9 +135,11 @@ def run_script():
     parse_user_input()
 
 
+# Function used to test parsing on a single log file
 def run_script_debug():
     dataFile = create_data_file("data.txt")
     parse_log_file("../TestData/mx302490-2-VIVA019p02-2-VIVA019_2-fastDPOutput-fast_dp.log", dataFile)
     dataFile.close()
+
 
 run_script()
