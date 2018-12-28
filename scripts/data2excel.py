@@ -112,7 +112,8 @@ def parse_user_args():
     if arguments["data"] is not None:
         dataFilePath = arguments["data"]
     else:
-        dataFilePath = "data.txt"
+        print "ERROR, please specify data file with -d flag\n"
+        return
     if arguments["excel"] is not None:
         parse_to_excel(dataFilePath, arguments["excel"])
     else:

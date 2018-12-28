@@ -13,6 +13,7 @@ import argparse
 
 # Function that creates the base for the data text file. Uses tabulations to keep values inline
 def create_data_file(pathName):
+    print "Creating data file at {}\n".format(pathName)
     dataFile = open(pathName, "w+")
     dataFile.write("NAME OF SAMPLE\t\t\tRESOLUTION LIMIT\t\t\tR VALUE\t\t\t\t\t\tI/SIGI\t\t\t\t\t\tCOMPLETENESS\t\t\t\tMultiplicity\t\t\t\tCC 1/2\t\t\t\t\t\tSPACE\t\tUNIT CELL\n")
     dataFile.write("(fastDP worked)\t\t\tAll\t\tLow\t\tHigh\t\tAll\t\tLow\t\tHigh\t\tAll\t\tLow\t\tHigh\t\tAll\t\tLow\t\tHigh\t\tAll\t\tLow\t\tHigh\t\tAll\t\tLow\t\tHigh\t\tGROUP\n")
@@ -36,6 +37,7 @@ def parse_log_file(logFilePath, dataFile):
     if log_file_len(logFilePath) < 20:
         return
     else:
+        print "Parsing log file at {}\n".format(logFilePath)
         # this will be the line added to the data file
         experimentLine = logFilePath.split('-')[4] + "-fastDP\t\t"
         logFile = open(logFilePath, "r+")
@@ -52,7 +54,8 @@ def parse_log_file(logFilePath, dataFile):
             elif "CC 1/2" in line:
                 values.remove("CC")
             # These are lines with three values that need to be tabulated
-            if "High resolution" in line or "Rmerge" in line or "Completeness" in line or "Multiplicity" in line or "I/sigma" in line or "CC 1/2" in line:      
+            if "High resolution" in line or "Rmerge" in line or "Completeness" in line or "Multiplicity" in line or "I/sigma" in line or "CC 1/2" in line:   
+                # if values are less than 4 characters, an extra tabulation is required   
                 if "Anom." not in line:
                     if len(values[1]) < 4:
                         experimentLine = experimentLine + values[1] + "\t\t"
@@ -90,8 +93,10 @@ def find_all_log_files(directoryPath):
                 if file.endswith(".log"):
                     logFilePaths.append(directoryPath + "/"+ file)
             if len(logFilePaths) == 0:
-                print "Error, no log files found in directory specified"
-            return logFilePaths
+                print "Error, no log files found in directory specified\n"
+            else:
+                print "Found {} log files to parse\n".format(len(logFilePaths))
+                return logFilePaths
         else:
             print "Error, specified path leads to file not directory\n"
     else:
@@ -133,13 +138,6 @@ def parse_user_input():
 # Main driver function for the script. First creates a data file, then parses log files in the specified location
 def run_script():
     parse_user_input()
-
-
-# Function used to test parsing on a single log file
-def run_script_debug():
-    dataFile = create_data_file("data.txt")
-    parse_log_file("../TestData/mx302490-2-VIVA019p02-2-VIVA019_2-fastDPOutput-fast_dp.log", dataFile)
-    dataFile.close()
 
 
 run_script()
