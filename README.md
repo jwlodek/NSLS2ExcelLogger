@@ -9,7 +9,7 @@ To install the scripts, first clone this repository with:
 
 ```
 git clone https://github.com/jwlodek/NSLS2ExcelLogger
-cd 17MXExcelLogger/scripts
+cd NSLS2ExcelLogger/scripts
 ```
 then, from inside the scripts directory, run 
 ```
