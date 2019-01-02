@@ -34,7 +34,7 @@ def log_file_len(logFilePath):
 # file that actually parses the log file and writes the line to the data file
 def parse_log_file(logFilePath, dataFile):
     # disregard unsuccessful experiments
-    if log_file_len(logFilePath) < 20:
+    if log_file_len(logFilePath) < 25:
         return
     else:
         print "Parsing log file at {}\n".format(logFilePath)
